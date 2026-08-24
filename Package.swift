@@ -5,9 +5,15 @@ import PackageDescription
 let package = Package(
     name: "llvm swift",
     targets: [
-        .systemLibrary(
+        .target(name: "LLVM", dependencies: ["LLVMC"]),
+        .target(
             name: "LLVMC",
-            providers: [.apt(["llvm"]), .brew(["llvm"]), .yum(["llvm"])]
+            cSettings: [
+                .define("__STDC_CONSTANT_MACROS"),
+                .define("__STDC_FORMAT_MACROS"),
+                .define("__STDC_LIMIT_MACROS")
+            ],
+            linkerSettings: []
         )
     ]
 )
