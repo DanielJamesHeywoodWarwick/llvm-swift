@@ -13,7 +13,7 @@ let package = Package(
                 .define("__STDC_FORMAT_MACROS"),
                 .define("__STDC_LIMIT_MACROS")
             ],
-            linkerSettings: []
+            linkerSettings: [.linkedLibrary("LLVM-22")]
         )
     ]
 )
