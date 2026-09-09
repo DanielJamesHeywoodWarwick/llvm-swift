@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "llvm swift",
+    name: "llvm-swift",
     products: [.library(name: "LLVM", targets: ["LLVM"])],
     targets: [
         .target(name: "LLVM", dependencies: ["LLVMC"]),
