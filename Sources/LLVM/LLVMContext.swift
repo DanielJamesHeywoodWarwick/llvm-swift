@@ -31,9 +31,7 @@ public struct LLVMContext {
 extension LLVMContext: Equatable {
     
     @inlinable
-    public static func == (lhs: LLVMContext, rhs: LLVMContext) -> Bool {
-        lhs._rawContext == rhs._rawContext
-    }
+    public static func == (lhs: LLVMContext, rhs: LLVMContext) -> Bool { lhs._rawContext == rhs._rawContext }
 }
 
 extension LLVMContext: Hashable {
