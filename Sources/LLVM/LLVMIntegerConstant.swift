@@ -73,3 +73,17 @@ public struct LLVMIntegerConstant: LLVMInteger, LLVMConstant {
         LLVMOpaqueFirstClassValue(_rawValue: _rawValue, in: context)
     }
 }
+
+extension LLVMIntegerConstant: Equatable {
+    
+    @inlinable
+    public static func == (lhs: LLVMIntegerConstant, rhs: LLVMIntegerConstant) -> Bool { lhs._rawValue == rhs._rawValue }
+}
+
+extension LLVMIntegerConstant: Hashable {
+    
+    @inlinable
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(_rawValue)
+    }
+}

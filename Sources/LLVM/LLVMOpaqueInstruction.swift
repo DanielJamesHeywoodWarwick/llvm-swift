@@ -17,3 +17,19 @@ public struct LLVMOpaqueInstruction: LLVMInstruction {
     @inlinable
     public var opaqueInstruction: LLVMOpaqueInstruction { self }
 }
+
+extension LLVMOpaqueInstruction: Equatable {
+    
+    @inlinable
+    public static func == (lhs: LLVMOpaqueInstruction, rhs: LLVMOpaqueInstruction) -> Bool {
+        lhs._rawValue == rhs._rawValue
+    }
+}
+
+extension LLVMOpaqueInstruction: Hashable {
+    
+    @inlinable
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(_rawValue)
+    }
+}
