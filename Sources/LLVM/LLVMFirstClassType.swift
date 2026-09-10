@@ -1,5 +1,3 @@
-import LLVMC
-
 public protocol LLVMFirstClassType: LLVMType {
     
     var opaqueFirstClassType: LLVMOpaqueFirstClassType { get }
