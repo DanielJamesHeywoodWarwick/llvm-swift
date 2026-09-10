@@ -12,7 +12,7 @@ public struct LLVMOpaqueFirstClassValue: LLVMFirstClassValue {
     @inlinable
     internal init(_rawValue: LLVMValueRef, in context: LLVMContext) {
         self._rawValue = _rawValue
-        self._context = context
+        _context = context
     }
     
     @inlinable
