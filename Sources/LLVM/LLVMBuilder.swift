@@ -33,6 +33,12 @@ public struct LLVMBuilder {
     }
     
     @inlinable
+    public func buildReturn(of value: LLVMFirstClassValue) -> LLVMInstruction {
+        precondition(value._context == _context, "The value is not in the same context as the builder")
+        return LLVMOpaqueInstruction(_rawValue: LLVMBuildRet(_rawBuilder, value._rawValue), in: _context)
+    }
+    
+    @inlinable
     internal var _rawBuilder: LLVMBuilderRef { _storage.rawBuilder }
     
     @inlinable
