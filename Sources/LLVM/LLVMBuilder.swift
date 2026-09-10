@@ -34,6 +34,9 @@ public struct LLVMBuilder {
     
     @inlinable
     internal var _rawBuilder: LLVMBuilderRef { _storage.rawBuilder }
+    
+    @inlinable
+    internal var _context: LLVMContext { _storage.context }
 }
 
 extension LLVMBuilder: Equatable {

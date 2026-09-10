@@ -38,6 +38,9 @@ public struct LLVMModule {
     
     @inlinable
     internal var _rawModule: LLVMModuleRef { _storage.rawModule }
+    
+    @inlinable
+    internal var _context: LLVMContext { _storage.context }
 }
 
 extension LLVMModule: Equatable {
