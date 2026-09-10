@@ -43,9 +43,9 @@ public struct LLVMModule {
         parameterTypes: some Sequence<LLVMFirstClassType>,
         isVariableArgument: Bool = false
     ) -> LLVMFunction {
-        precondition(returnType._context == _context, "The return type is not in the same context as the module")
+        precondition(returnType.context == context, "The return type is not in the same context as the module")
         precondition(
-            parameterTypes.allSatisfy { type in type._context == _context },
+            parameterTypes.allSatisfy { type in type.context == context },
             "The parameter types are not all in the same context as the module"
         )
         var rawParameterTypes = parameterTypes.map { type in type._rawType as LLVMTypeRef? }
@@ -64,7 +64,7 @@ public struct LLVMModule {
                     )
                 }
             ),
-            in: _context
+            in: context
         )
     }
     
@@ -72,7 +72,7 @@ public struct LLVMModule {
     internal var _rawModule: LLVMModuleRef { _storage.rawModule }
     
     @inlinable
-    internal var _context: LLVMContext { _storage.context }
+    public var context: LLVMContext { _storage.context }
 }
 
 extension LLVMModule: Equatable {

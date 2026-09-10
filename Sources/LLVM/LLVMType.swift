@@ -11,5 +11,5 @@ extension LLVMType {
     internal var _rawType: LLVMTypeRef { opaqueType._rawType }
     
     @inlinable
-    internal var _context: LLVMContext { opaqueType._context }
+    public var context: LLVMContext { opaqueType.context }
 }

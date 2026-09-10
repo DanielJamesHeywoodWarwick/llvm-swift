@@ -6,17 +6,16 @@ public struct LLVMFunction: LLVMValue {
     @usableFromInline
     internal let _rawValue: LLVMValueRef
     
-    @usableFromInline
-    internal let _context: LLVMContext
+    public let context: LLVMContext
     
     @inlinable
     internal init(_rawValue: LLVMValueRef, in context: LLVMContext) {
         self._rawValue = _rawValue
-        _context = context
+        self.context = context
     }
     
     @inlinable
-    public var opaqueValue: LLVMOpaqueValue { LLVMOpaqueValue(_rawValue: _rawValue, in: _context) }
+    public var opaqueValue: LLVMOpaqueValue { LLVMOpaqueValue(_rawValue: _rawValue, in: context) }
 }
 
 extension LLVMFunction: Equatable {

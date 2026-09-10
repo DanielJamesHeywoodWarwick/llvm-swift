@@ -7,6 +7,6 @@ extension LLVMFirstClassType {
     
     @inlinable
     public var opaqueType: LLVMOpaqueType {
-        LLVMOpaqueType(_rawType: opaqueFirstClassType._rawType, in: opaqueFirstClassType._context)
+        LLVMOpaqueType(_rawType: opaqueFirstClassType._rawType, in: opaqueFirstClassType.context)
     }
 }

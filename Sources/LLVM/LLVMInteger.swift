@@ -7,6 +7,6 @@ extension LLVMInteger {
     
     @inlinable
     public var opaqueFirstClassValue: LLVMOpaqueFirstClassValue {
-        LLVMOpaqueFirstClassValue(_rawValue: opaqueInteger._rawValue, in: opaqueInteger._context)
+        LLVMOpaqueFirstClassValue(_rawValue: opaqueInteger._rawValue, in: opaqueInteger.context)
     }
 }
