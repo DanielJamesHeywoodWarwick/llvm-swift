@@ -39,10 +39,10 @@ public struct LLVMBuilder {
     }
     
     @inlinable
-    internal var _rawBuilder: LLVMBuilderRef { _storage.rawBuilder }
+    public var context: LLVMContext { _storage.context }
     
     @inlinable
-    public var context: LLVMContext { _storage.context }
+    internal var _rawBuilder: LLVMBuilderRef { _storage.rawBuilder }
 }
 
 extension LLVMBuilder: Equatable {

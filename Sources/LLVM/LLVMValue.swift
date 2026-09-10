@@ -8,8 +8,8 @@ public protocol LLVMValue {
 extension LLVMValue {
     
     @inlinable
-    internal var _rawValue: LLVMValueRef { opaqueValue._rawValue }
+    public var context: LLVMContext { opaqueValue.context }
     
     @inlinable
-    public var context: LLVMContext { opaqueValue.context }
+    internal var _rawValue: LLVMValueRef { opaqueValue._rawValue }
 }
