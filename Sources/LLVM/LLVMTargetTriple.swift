@@ -4,28 +4,11 @@ import LLVMC
 public struct LLVMTargetTriple {
     
     @usableFromInline
-    internal final class _Storage {
-        
-        @usableFromInline
-        internal let rawMessage: UnsafeMutablePointer<CChar>
-        
-        @inlinable
-        internal init(rawMessage: UnsafeMutablePointer<CChar>) {
-            self.rawMessage = rawMessage
-        }
-        
-        @inlinable
-        deinit {
-            LLVMDisposeMessage(rawMessage)
-        }
-    }
-    
-    @usableFromInline
-    internal let _storage: _Storage
+    internal let _message: LLVMMessage
     
     @inlinable
     internal init(_rawMessage: UnsafeMutablePointer<CChar>) {
-        self._storage = _Storage(rawMessage: _rawMessage)
+        self._message = LLVMMessage(_rawMessage: _rawMessage)
     }
     
     @inlinable
