@@ -12,4 +12,7 @@ extension LLVMValue {
     
     @inlinable
     internal var _rawValue: LLVMValueRef { opaqueValue._rawValue }
+    
+    @inlinable
+    internal var _rawContext: LLVMContextRef { context._rawContext }
 }

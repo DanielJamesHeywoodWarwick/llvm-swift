@@ -15,6 +15,11 @@ public struct LLVMFunction: LLVMValue {
     }
     
     @inlinable
+    public func appendBasicBlock() -> LLVMBasicBlock {
+        LLVMBasicBlock(_rawBasicBlock: LLVMAppendBasicBlockInContext(_rawContext, _rawValue, ""), in: module)
+    }
+    
+    @inlinable
     public var opaqueValue: LLVMOpaqueValue { LLVMOpaqueValue(_rawValue: _rawValue, in: context) }
 }
 
