@@ -14,7 +14,7 @@ public struct LLVMBuilder {
         
         @inlinable
         internal init(in context: LLVMContext) {
-            rawBuilder = LLVMCreateBuilderInContext(context._rawContext)
+            self.rawBuilder = LLVMCreateBuilderInContext(context._rawContext)
             self.context = context
         }
         
@@ -29,7 +29,7 @@ public struct LLVMBuilder {
     
     @inlinable
     public init(in context: LLVMContext) {
-        _storage = _Storage(in: context)
+        self._storage = _Storage(in: context)
     }
     
     @inlinable

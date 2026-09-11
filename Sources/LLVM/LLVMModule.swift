@@ -14,7 +14,7 @@ public struct LLVMModule {
         
         @inlinable
         internal init(id: String, in context: LLVMContext) {
-            rawModule = LLVMModuleCreateWithNameInContext(id, context._rawContext)
+            self.rawModule = LLVMModuleCreateWithNameInContext(id, context._rawContext)
             self.context = context
         }
         
@@ -29,7 +29,7 @@ public struct LLVMModule {
     
     @inlinable
     public init(id: String, sourceFileName: String, in context: LLVMContext) {
-        _storage = _Storage(id: id, in: context)
+        self._storage = _Storage(id: id, in: context)
         var sourceFileName = sourceFileName
         sourceFileName.withUTF8 { buffer in
             LLVMSetSourceFileName(_storage.rawModule, buffer.baseAddress, buffer.count)
