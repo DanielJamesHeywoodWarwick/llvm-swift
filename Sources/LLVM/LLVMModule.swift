@@ -64,7 +64,7 @@ public struct LLVMModule {
                     )
                 }
             ),
-            in: context
+            in: self
         )
     }
     

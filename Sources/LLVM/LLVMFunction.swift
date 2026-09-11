@@ -6,12 +6,12 @@ public struct LLVMFunction: LLVMValue {
     @usableFromInline
     internal let _rawValue: LLVMValueRef
     
-    public let context: LLVMContext
+    public let module: LLVMModule
     
     @inlinable
-    internal init(_rawValue: LLVMValueRef, in context: LLVMContext) {
+    internal init(_rawValue: LLVMValueRef, in module: LLVMModule) {
         self._rawValue = _rawValue
-        self.context = context
+        self.module = module
     }
     
     @inlinable
