@@ -16,7 +16,7 @@ public struct LLVMFunction: LLVMValue {
     
     @inlinable
     public func appendBasicBlock() -> LLVMBasicBlock {
-        LLVMBasicBlock(_rawBasicBlock: LLVMAppendBasicBlockInContext(_rawContext, _rawValue, ""), in: module)
+        LLVMBasicBlock(_rawBlock: LLVMAppendBasicBlockInContext(_rawContext, _rawValue, ""), in: module)
     }
     
     @inlinable

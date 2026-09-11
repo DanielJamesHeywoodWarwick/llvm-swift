@@ -4,13 +4,13 @@ import LLVMC
 public struct LLVMBasicBlock {
     
     @usableFromInline
-    internal let _rawBasicBlock: LLVMBasicBlockRef
+    internal let _rawBlock: LLVMBasicBlockRef
     
     public let module: LLVMModule
     
     @inlinable
-    internal init(_rawBasicBlock: LLVMBasicBlockRef, in module: LLVMModule) {
-        self._rawBasicBlock = _rawBasicBlock
+    internal init(_rawBlock: LLVMBasicBlockRef, in module: LLVMModule) {
+        self._rawBlock = _rawBlock
         self.module = module
     }
 }
@@ -18,13 +18,13 @@ public struct LLVMBasicBlock {
 extension LLVMBasicBlock: Equatable {
     
     @inlinable
-    public static func == (lhs: LLVMBasicBlock, rhs: LLVMBasicBlock) -> Bool { lhs._rawBasicBlock == rhs._rawBasicBlock }
+    public static func == (lhs: LLVMBasicBlock, rhs: LLVMBasicBlock) -> Bool { lhs._rawBlock == rhs._rawBlock }
 }
 
 extension LLVMBasicBlock: Hashable {
     
     @inlinable
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(_rawBasicBlock)
+        hasher.combine(_rawBlock)
     }
 }
