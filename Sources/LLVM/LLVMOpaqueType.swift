@@ -31,3 +31,9 @@ extension LLVMOpaqueType: Hashable {
         hasher.combine(_rawType)
     }
 }
+
+extension LLVMOpaqueType: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
+}

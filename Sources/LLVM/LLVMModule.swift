@@ -88,3 +88,9 @@ extension LLVMModule: Hashable {
         hasher.combine(_rawModule)
     }
 }
+
+extension LLVMModule: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
+}

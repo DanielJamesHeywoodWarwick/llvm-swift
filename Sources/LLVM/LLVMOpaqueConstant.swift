@@ -32,3 +32,8 @@ extension LLVMOpaqueConstant: Hashable {
     }
 }
 
+extension LLVMOpaqueConstant: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
+}

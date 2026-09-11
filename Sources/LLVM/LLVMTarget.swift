@@ -20,3 +20,9 @@ extension LLVMTarget: Hashable {
         hasher.combine(_rawTarget)
     }
 }
+
+extension LLVMTarget: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
+}

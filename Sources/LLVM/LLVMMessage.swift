@@ -28,3 +28,9 @@ public struct LLVMMessage {
         self._storage = _Storage(rawMessage: _rawMessage)
     }
 }
+
+extension LLVMMessage: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
+}

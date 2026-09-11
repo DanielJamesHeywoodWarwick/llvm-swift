@@ -63,3 +63,9 @@ extension LLVMBuilder: Hashable {
         hasher.combine(_rawBuilder)
     }
 }
+
+extension LLVMBuilder: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
+}

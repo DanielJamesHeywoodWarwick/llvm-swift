@@ -41,3 +41,9 @@ extension LLVMContext: Hashable {
         hasher.combine(_rawContext)
     }
 }
+
+extension LLVMContext: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
+}

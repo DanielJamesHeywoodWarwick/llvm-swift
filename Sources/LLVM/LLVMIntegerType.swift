@@ -34,3 +34,9 @@ extension LLVMIntegerType: Hashable {
         hasher.combine(_rawType)
     }
 }
+
+extension LLVMIntegerType: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
+}

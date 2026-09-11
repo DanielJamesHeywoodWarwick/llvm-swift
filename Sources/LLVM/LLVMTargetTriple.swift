@@ -3,12 +3,11 @@ import LLVMC
 @frozen
 public struct LLVMTargetTriple {
     
-    @usableFromInline
-    internal let _message: LLVMMessage
+    public let message: LLVMMessage
     
     @inlinable
     internal init(_rawMessage: UnsafeMutablePointer<CChar>) {
-        self._message = LLVMMessage(_rawMessage: _rawMessage)
+        self.message = LLVMMessage(_rawMessage: _rawMessage)
     }
     
     @inlinable

@@ -28,3 +28,9 @@ extension LLVMBasicBlock: Hashable {
         hasher.combine(_rawBlock)
     }
 }
+
+extension LLVMBasicBlock: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
+}

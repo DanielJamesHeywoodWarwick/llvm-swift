@@ -87,3 +87,9 @@ extension LLVMIntegerConstant: Hashable {
         hasher.combine(_rawValue)
     }
 }
+
+extension LLVMIntegerConstant: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
+}
