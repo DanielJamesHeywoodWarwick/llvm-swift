@@ -32,5 +32,5 @@ extension LLVMBasicBlock: Hashable {
 extension LLVMBasicBlock: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, children: ["rawBlock": _rawBlock], displayStyle: .struct) }
+    public var customMirror: Mirror { Mirror(self, unlabeledChildren: EmptyCollection() as EmptyCollection<Void>) }
 }

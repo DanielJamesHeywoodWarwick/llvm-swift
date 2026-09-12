@@ -35,5 +35,5 @@ public struct LLVMMessage {
 extension LLVMMessage: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, children: ["rawMessage": _rawMessage], displayStyle: .struct) }
+    public var customMirror: Mirror { Mirror(self, unlabeledChildren: EmptyCollection() as EmptyCollection<Void>) }
 }

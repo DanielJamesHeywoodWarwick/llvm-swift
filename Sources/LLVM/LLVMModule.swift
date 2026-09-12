@@ -92,5 +92,5 @@ extension LLVMModule: Hashable {
 extension LLVMModule: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, children: ["rawModule": _rawModule], displayStyle: .struct) }
+    public var customMirror: Mirror { Mirror(self, unlabeledChildren: EmptyCollection() as EmptyCollection<Void>) }
 }

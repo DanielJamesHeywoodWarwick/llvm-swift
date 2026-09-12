@@ -91,5 +91,5 @@ extension LLVMIntegerConstant: Hashable {
 extension LLVMIntegerConstant: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, children: ["rawValue": _rawValue], displayStyle: .struct) }
+    public var customMirror: Mirror { Mirror(self, unlabeledChildren: EmptyCollection() as EmptyCollection<Void>) }
 }

@@ -45,5 +45,5 @@ extension LLVMContext: Hashable {
 extension LLVMContext: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, children: ["rawContext": _rawContext], displayStyle: .struct) }
+    public var customMirror: Mirror { Mirror(self, unlabeledChildren: EmptyCollection() as EmptyCollection<Void>) }
 }

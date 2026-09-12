@@ -38,5 +38,5 @@ extension LLVMIntegerType: Hashable {
 extension LLVMIntegerType: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, children: ["rawType": _rawType], displayStyle: .struct) }
+    public var customMirror: Mirror { Mirror(self, unlabeledChildren: EmptyCollection() as EmptyCollection<Void>) }
 }
