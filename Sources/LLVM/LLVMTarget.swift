@@ -24,5 +24,5 @@ extension LLVMTarget: Hashable {
 extension LLVMTarget: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, children: [:]) }
+    public var customMirror: Mirror { Mirror(self, children: ["rawTarget": _rawTarget], displayStyle: .struct) }
 }

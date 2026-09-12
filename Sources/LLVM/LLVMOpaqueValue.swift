@@ -35,5 +35,5 @@ extension LLVMOpaqueValue: Hashable {
 extension LLVMOpaqueValue: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, children: [:]) }
+    public var customMirror: Mirror { Mirror(self, children: ["rawValue": _rawValue], displayStyle: .struct) }
 }

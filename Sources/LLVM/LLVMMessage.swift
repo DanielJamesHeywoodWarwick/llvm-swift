@@ -27,10 +27,13 @@ public struct LLVMMessage {
     internal init(_rawMessage: UnsafeMutablePointer<CChar>) {
         self._storage = _Storage(rawMessage: _rawMessage)
     }
+    
+    @inlinable
+    internal var _rawMessage: UnsafeMutablePointer<CChar> { _storage.rawMessage }
 }
 
 extension LLVMMessage: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, children: [:]) }
+    public var customMirror: Mirror { Mirror(self, children: ["rawMessage": _rawMessage], displayStyle: .struct) }
 }
