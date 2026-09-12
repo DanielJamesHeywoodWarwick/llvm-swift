@@ -13,3 +13,11 @@ public struct LLVMTargetTriple {
     @inlinable
     public static var `default`: LLVMTargetTriple { LLVMTargetTriple(_rawMessage: LLVMGetDefaultTargetTriple()) }
 }
+
+extension LLVMTargetTriple: Hashable {}
+
+extension LLVMTargetTriple: CustomStringConvertible {
+    
+    @inlinable
+    public var description: String { "\(message)" }
+}
