@@ -40,12 +40,14 @@ public struct LLVMModule {
     @inlinable
     public func write(to descriptor: FileDescriptor) throws {
         let rawMessage = LLVMPrintModuleToString(_rawModule) as UnsafeMutablePointer<CChar>
+        defer {
+            LLVMDisposeMessage(rawMessage)
+        }
         var count = 0
         while rawMessage[count] != 0 {
             count += 1
         }
         try descriptor.writeAll(UnsafeRawBufferPointer(start: rawMessage, count: count))
-        LLVMDisposeMessage(rawMessage)
     }
     
     @inlinable
