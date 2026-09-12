@@ -37,5 +37,5 @@ extension LLVMOpaqueFirstClassType: Hashable {
 extension LLVMOpaqueFirstClassType: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, unlabeledChildren: EmptyCollection() as EmptyCollection<Void>) }
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
 }

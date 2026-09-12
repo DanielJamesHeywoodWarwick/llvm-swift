@@ -6,7 +6,5 @@ public protocol LLVMInstruction: LLVMValue {
 extension LLVMInstruction {
     
     @inlinable
-    public var opaqueValue: LLVMOpaqueValue {
-        LLVMOpaqueValue(_rawValue: opaqueInstruction._rawValue, in: opaqueInstruction.context)
-    }
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
 }

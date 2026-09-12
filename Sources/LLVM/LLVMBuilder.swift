@@ -67,5 +67,5 @@ extension LLVMBuilder: Hashable {
 extension LLVMBuilder: CustomReflectable {
     
     @inlinable
-    public var customMirror: Mirror { Mirror(self, unlabeledChildren: EmptyCollection() as EmptyCollection<Void>) }
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
 }
