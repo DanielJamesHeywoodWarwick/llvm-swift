@@ -16,19 +16,31 @@ public struct LLVMIntegerConstant: LLVMInteger, LLVMConstant {
     
     @inlinable
     public init(_ value: Int8, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(LLVMInt8TypeInContext(context._rawContext), UInt64(bitPattern: Int64(value)), 0)
+        self._rawValue = LLVMConstInt(
+            LLVMInt8TypeInContext(context._rawContext),
+            UInt64(bitPattern: Int64(value)),
+            0
+        )
         self.context = context
     }
     
     @inlinable
     public init(_ value: Int16, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(LLVMInt16TypeInContext(context._rawContext), UInt64(bitPattern: Int64(value)), 0)
+        self._rawValue = LLVMConstInt(
+            LLVMInt16TypeInContext(context._rawContext),
+            UInt64(bitPattern: Int64(value)),
+            0
+        )
         self.context = context
     }
     
     @inlinable
     public init(_ value: Int32, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(LLVMInt32TypeInContext(context._rawContext), UInt64(bitPattern: Int64(value)), 0)
+        self._rawValue = LLVMConstInt(
+            LLVMInt32TypeInContext(context._rawContext),
+            UInt64(bitPattern: Int64(value)),
+            0
+        )
         self.context = context
     }
     
@@ -77,7 +89,9 @@ public struct LLVMIntegerConstant: LLVMInteger, LLVMConstant {
 extension LLVMIntegerConstant: Equatable {
     
     @inlinable
-    public static func == (lhs: LLVMIntegerConstant, rhs: LLVMIntegerConstant) -> Bool { lhs._rawValue == rhs._rawValue }
+    public static func == (lhs: LLVMIntegerConstant, rhs: LLVMIntegerConstant) -> Bool {
+        lhs._rawValue == rhs._rawValue
+    }
 }
 
 extension LLVMIntegerConstant: Hashable {

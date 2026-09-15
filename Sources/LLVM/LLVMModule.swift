@@ -69,7 +69,9 @@ public struct LLVMModule {
                 name,
                 rawParameterTypes.withUnsafeMutableBufferPointer { buffer in
                     guard let parameterCount = UInt32(exactly: buffer.count) else {
-                        preconditionFailure("Expected at most \(UInt32.max) parameters, but got \(buffer.count)")
+                        preconditionFailure(
+                            "Expected at most \(UInt32.max) parameters, but got \(buffer.count)"
+                        )
                     }
                     return LLVMFunctionType(
                         returnType._rawType,

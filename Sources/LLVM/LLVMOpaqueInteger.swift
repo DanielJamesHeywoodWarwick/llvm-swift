@@ -21,7 +21,9 @@ public struct LLVMOpaqueInteger: LLVMInteger {
 extension LLVMOpaqueInteger: Equatable {
     
     @inlinable
-    public static func == (lhs: LLVMOpaqueInteger, rhs: LLVMOpaqueInteger) -> Bool { lhs._rawValue == rhs._rawValue }
+    public static func == (lhs: LLVMOpaqueInteger, rhs: LLVMOpaqueInteger) -> Bool {
+        lhs._rawValue == rhs._rawValue
+    }
 }
 
 extension LLVMOpaqueInteger: Hashable {
