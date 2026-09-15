@@ -7,7 +7,10 @@ let package = Package(
     products: [.library(name: "LLVM", targets: ["LLVM"])],
     dependencies: [.package(url: "https://github.com/apple/swift-system", from: "1.0.0")],
     targets: [
-        .target(name: "LLVM", dependencies: [.product(name: "SystemPackage", package: "swift-system"), "LLVMC"]),
+        .target(
+            name: "LLVM",
+            dependencies: [.product(name: "SystemPackage", package: "swift-system"), "LLVMC"]
+        ),
         .target(
             name: "LLVMC",
             cSettings: [
