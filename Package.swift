@@ -1,4 +1,4 @@
-// swift-tools-version: 6.3
+// swift-tools-version: 6.4
 
 import PackageDescription
 
@@ -11,14 +11,6 @@ let package = Package(
             name: "LLVM",
             dependencies: [.product(name: "SystemPackage", package: "swift-system"), "LLVMC"]
         ),
-        .target(
-            name: "LLVMC",
-            cSettings: [
-                .define("__STDC_CONSTANT_MACROS"),
-                .define("__STDC_FORMAT_MACROS"),
-                .define("__STDC_LIMIT_MACROS")
-            ],
-            linkerSettings: [.linkedLibrary("LLVM-22")]
-        )
+        .systemLibrary(name: "LLVMC", pkgConfig: "llvm", providers: [.brew(["llvm"])])
     ]
 )
