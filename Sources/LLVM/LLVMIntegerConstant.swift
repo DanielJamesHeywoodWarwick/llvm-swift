@@ -10,13 +10,13 @@ public struct LLVMIntegerConstant: LLVMInteger, LLVMConstant {
     
     @inlinable
     public init(_ value: Bool, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(LLVMInt1TypeInContext(context._rawContext), value ? 1 : 0, 0)
+        _rawValue = LLVMConstInt(LLVMInt1TypeInContext(context._rawContext), value ? 1 : 0, 0)
         self.context = context
     }
     
     @inlinable
     public init(_ value: Int8, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(
+        _rawValue = LLVMConstInt(
             LLVMInt8TypeInContext(context._rawContext),
             UInt64(bitPattern: Int64(value)),
             0
@@ -26,7 +26,7 @@ public struct LLVMIntegerConstant: LLVMInteger, LLVMConstant {
     
     @inlinable
     public init(_ value: Int16, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(
+        _rawValue = LLVMConstInt(
             LLVMInt16TypeInContext(context._rawContext),
             UInt64(bitPattern: Int64(value)),
             0
@@ -36,7 +36,7 @@ public struct LLVMIntegerConstant: LLVMInteger, LLVMConstant {
     
     @inlinable
     public init(_ value: Int32, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(
+        _rawValue = LLVMConstInt(
             LLVMInt32TypeInContext(context._rawContext),
             UInt64(bitPattern: Int64(value)),
             0
@@ -46,31 +46,31 @@ public struct LLVMIntegerConstant: LLVMInteger, LLVMConstant {
     
     @inlinable
     public init(_ value: Int64, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(LLVMInt64TypeInContext(context._rawContext), UInt64(bitPattern: value), 0)
+        _rawValue = LLVMConstInt(LLVMInt64TypeInContext(context._rawContext), UInt64(bitPattern: value), 0)
         self.context = context
     }
     
     @inlinable
     public init(_ value: UInt8, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(LLVMInt8TypeInContext(context._rawContext), UInt64(value), 0)
+        _rawValue = LLVMConstInt(LLVMInt8TypeInContext(context._rawContext), UInt64(value), 0)
         self.context = context
     }
     
     @inlinable
     public init(_ value: UInt16, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(LLVMInt16TypeInContext(context._rawContext), UInt64(value), 0)
+        _rawValue = LLVMConstInt(LLVMInt16TypeInContext(context._rawContext), UInt64(value), 0)
         self.context = context
     }
     
     @inlinable
     public init(_ value: UInt32, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(LLVMInt32TypeInContext(context._rawContext), UInt64(value), 0)
+        _rawValue = LLVMConstInt(LLVMInt32TypeInContext(context._rawContext), UInt64(value), 0)
         self.context = context
     }
     
     @inlinable
     public init(_ value: UInt64, in context: LLVMContext) {
-        self._rawValue = LLVMConstInt(LLVMInt64TypeInContext(context._rawContext), value, 0)
+        _rawValue = LLVMConstInt(LLVMInt64TypeInContext(context._rawContext), value, 0)
         self.context = context
     }
     
