@@ -6,12 +6,13 @@ public struct LLVMBasicBlock {
     @usableFromInline
     internal let _rawBlock: LLVMBasicBlockRef
     
-    public let module: LLVMModule
+    @usableFromInline
+    internal let _module: LLVMModule
     
     @inlinable
     internal init(_rawBlock: LLVMBasicBlockRef, in module: LLVMModule) {
         self._rawBlock = _rawBlock
-        self.module = module
+        _module = module
     }
 }
 

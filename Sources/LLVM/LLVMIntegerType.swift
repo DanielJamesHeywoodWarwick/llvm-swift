@@ -6,18 +6,19 @@ public struct LLVMIntegerType: LLVMFirstClassType {
     @usableFromInline
     internal let _rawType: LLVMTypeRef
     
-    public let context: LLVMContext
+    @usableFromInline
+    internal let _context: LLVMContext
     
     @inlinable
     public init(bitWidth: Int, in context: LLVMContext) {
         precondition(1...8388608 ~= bitWidth, "Expected a bit width between 1 and 8388608, but got \(bitWidth)")
         _rawType = LLVMIntTypeInContext(context._rawContext, UInt32(bitWidth))
-        self.context = context
+        _context = context
     }
     
     @inlinable
     public var opaqueFirstClassType: LLVMOpaqueFirstClassType {
-        LLVMOpaqueFirstClassType(_rawType: _rawType, in: context)
+        LLVMOpaqueFirstClassType(_rawType: _rawType, in: _context)
     }
 }
 

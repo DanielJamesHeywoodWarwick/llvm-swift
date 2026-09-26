@@ -7,6 +7,6 @@ extension LLVMInstruction {
     
     @inlinable
     public var opaqueValue: LLVMOpaqueValue {
-        LLVMOpaqueValue(_rawValue: opaqueInstruction._rawValue, in: opaqueInstruction.context)
+        LLVMOpaqueValue(_rawValue: opaqueInstruction._rawValue, in: opaqueInstruction._context)
     }
 }

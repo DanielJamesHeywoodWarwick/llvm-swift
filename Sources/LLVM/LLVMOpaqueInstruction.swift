@@ -6,12 +6,13 @@ public struct LLVMOpaqueInstruction: LLVMInstruction {
     @usableFromInline
     internal let _rawValue: LLVMValueRef
     
-    public let context: LLVMContext
+    @usableFromInline
+    internal let _context: LLVMContext
     
     @inlinable
     internal init(_rawValue: LLVMValueRef, in context: LLVMContext) {
         self._rawValue = _rawValue
-        self.context = context
+        _context = context
     }
     
     @inlinable

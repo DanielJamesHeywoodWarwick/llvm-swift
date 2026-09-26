@@ -8,11 +8,11 @@ public protocol LLVMValue {
 extension LLVMValue {
     
     @inlinable
-    public var context: LLVMContext { opaqueValue.context }
+    internal var _context: LLVMContext { opaqueValue._context }
     
     @inlinable
     internal var _rawValue: LLVMValueRef { opaqueValue._rawValue }
     
     @inlinable
-    internal var _rawContext: LLVMContextRef { context._rawContext }
+    internal var _rawContext: LLVMContextRef { _context._rawContext }
 }

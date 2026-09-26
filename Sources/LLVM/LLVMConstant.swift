@@ -7,6 +7,6 @@ extension LLVMConstant {
     
     @inlinable
     public var opaqueFirstClassValue: LLVMOpaqueFirstClassValue {
-        LLVMOpaqueFirstClassValue(_rawValue: opaqueConstant._rawValue, in: opaqueConstant.context)
+        LLVMOpaqueFirstClassValue(_rawValue: opaqueConstant._rawValue, in: opaqueConstant._context)
     }
 }

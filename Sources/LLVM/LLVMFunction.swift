@@ -6,21 +6,22 @@ public struct LLVMFunction: LLVMValue {
     @usableFromInline
     internal let _rawValue: LLVMValueRef
     
-    public let module: LLVMModule
+    @usableFromInline
+    internal let _module: LLVMModule
     
     @inlinable
     internal init(_rawValue: LLVMValueRef, in module: LLVMModule) {
         self._rawValue = _rawValue
-        self.module = module
+        _module = module
     }
     
     @inlinable
     public func appendBasicBlock() -> LLVMBasicBlock {
-        LLVMBasicBlock(_rawBlock: LLVMAppendBasicBlockInContext(_rawContext, _rawValue, ""), in: module)
+        LLVMBasicBlock(_rawBlock: LLVMAppendBasicBlockInContext(_rawContext, _rawValue, ""), in: _module)
     }
     
     @inlinable
-    public var opaqueValue: LLVMOpaqueValue { LLVMOpaqueValue(_rawValue: _rawValue, in: context) }
+    public var opaqueValue: LLVMOpaqueValue { LLVMOpaqueValue(_rawValue: _rawValue, in: _context) }
 }
 
 extension LLVMFunction: Equatable {

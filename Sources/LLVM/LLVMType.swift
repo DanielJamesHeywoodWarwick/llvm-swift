@@ -8,7 +8,7 @@ public protocol LLVMType {
 extension LLVMType {
     
     @inlinable
-    public var context: LLVMContext { opaqueType.context }
+    internal var _context: LLVMContext { opaqueType._context }
     
     @inlinable
     internal var _rawType: LLVMTypeRef { opaqueType._rawType }
