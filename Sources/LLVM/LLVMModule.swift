@@ -57,7 +57,10 @@ public struct LLVMModule {
         parameterTypes: some Sequence<LLVMFirstClassType>,
         isVariableArgument: Bool = false
     ) -> LLVMFunction {
-        precondition(returnType._context == _context, "The return type is not in the same context as the module")
+        precondition(
+            returnType._context == _context,
+            "The return type is not in the same context as the module"
+        )
         precondition(
             parameterTypes.allSatisfy { type in type._context == _context },
             "The parameter types are not all in the same context as the module"
