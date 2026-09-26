@@ -17,9 +17,7 @@ public struct LLVMIntegerType: LLVMFirstClassType {
     }
     
     @inlinable
-    public var opaqueFirstClassType: LLVMOpaqueFirstClassType {
-        LLVMOpaqueFirstClassType(_rawType: _rawType, in: _context)
-    }
+    public var opaqueFirstClassType: LLVMOpaqueFirstClassType { LLVMOpaqueFirstClassType(_rawType: _rawType, in: _context) }
 }
 
 extension LLVMIntegerType: Equatable {

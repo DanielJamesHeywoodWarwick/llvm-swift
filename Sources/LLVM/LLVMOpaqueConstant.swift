@@ -22,9 +22,7 @@ public struct LLVMOpaqueConstant: LLVMConstant {
 extension LLVMOpaqueConstant: Equatable {
     
     @inlinable
-    public static func == (lhs: LLVMOpaqueConstant, rhs: LLVMOpaqueConstant) -> Bool {
-        lhs._rawValue == rhs._rawValue
-    }
+    public static func == (lhs: LLVMOpaqueConstant, rhs: LLVMOpaqueConstant) -> Bool { lhs._rawValue == rhs._rawValue }
 }
 
 extension LLVMOpaqueConstant: Hashable {

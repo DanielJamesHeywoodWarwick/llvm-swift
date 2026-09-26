@@ -22,9 +22,7 @@ public struct LLVMOpaqueFirstClassType: LLVMFirstClassType {
 extension LLVMOpaqueFirstClassType: Equatable {
     
     @inlinable
-    public static func == (lhs: LLVMOpaqueFirstClassType, rhs: LLVMOpaqueFirstClassType) -> Bool {
-        lhs._rawType == rhs._rawType
-    }
+    public static func == (lhs: LLVMOpaqueFirstClassType, rhs: LLVMOpaqueFirstClassType) -> Bool { lhs._rawType == rhs._rawType }
 }
 
 extension LLVMOpaqueFirstClassType: Hashable {

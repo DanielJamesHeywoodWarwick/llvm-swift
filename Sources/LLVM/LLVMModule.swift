@@ -57,10 +57,7 @@ public struct LLVMModule {
         parameterTypes: some Sequence<LLVMFirstClassType>,
         isVariableArgument: Bool = false
     ) -> LLVMFunction {
-        precondition(
-            returnType._context == _context,
-            "The return type is not in the same context as the module"
-        )
+        precondition(returnType._context == _context, "The return type is not in the same context as the module")
         precondition(
             parameterTypes.allSatisfy { type in type._context == _context },
             "The parameter types are not all in the same context as the module"
@@ -72,15 +69,9 @@ public struct LLVMModule {
                 name,
                 rawParameterTypes.withUnsafeMutableBufferPointer { buffer in
                     guard let parameterCount = UInt32(exactly: buffer.count) else {
-                        preconditionFailure(
-                            "Expected at most \(UInt32.max) parameters, but got \(buffer.count)"
-                        )
+                        preconditionFailure("Expected at most \(UInt32.max) parameters, but got \(buffer.count)")
                     }
-                    return LLVMFunctionType(
-                        returnType._rawType,
-                        buffer.baseAddress, parameterCount,
-                        isVariableArgument ? 1 : 0
-                    )
+                    return LLVMFunctionType(returnType._rawType, buffer.baseAddress, parameterCount, isVariableArgument ? 1 : 0)
                 }
             ),
             in: self
