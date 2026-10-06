@@ -42,6 +42,12 @@ extension LLVMContext: Hashable {
     }
 }
 
+extension LLVMContext: CustomDebugStringConvertible {
+    
+    @inlinable
+    public var debugDescription: String { "LLVMContext()" }
+}
+
 extension LLVMContext: CustomReflectable {
     
     @inlinable

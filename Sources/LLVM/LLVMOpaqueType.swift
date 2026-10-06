@@ -33,6 +33,12 @@ extension LLVMOpaqueType: Hashable {
     }
 }
 
+extension LLVMOpaqueType: CustomDebugStringConvertible {
+    
+    @inlinable
+    public var debugDescription: String { "LLVMOpaqueType()" }
+}
+
 extension LLVMOpaqueType: CustomReflectable {
     
     @inlinable

@@ -99,6 +99,12 @@ extension LLVMModule: Hashable {
     }
 }
 
+extension LLVMModule: CustomDebugStringConvertible {
+    
+    @inlinable
+    public var debugDescription: String { "LLVMModule()" }
+}
+
 extension LLVMModule: CustomReflectable {
     
     @inlinable

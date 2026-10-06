@@ -30,6 +30,12 @@ extension LLVMBasicBlock: Hashable {
     }
 }
 
+extension LLVMBasicBlock: CustomDebugStringConvertible {
+    
+    @inlinable
+    public var debugDescription: String { "LLVMBasicBlock()" }
+}
+
 extension LLVMBasicBlock: CustomReflectable {
     
     @inlinable

@@ -87,6 +87,12 @@ extension LLVMIntegerConstant: Hashable {
     }
 }
 
+extension LLVMIntegerConstant: CustomDebugStringConvertible {
+    
+    @inlinable
+    public var debugDescription: String { "LLVMIntegerConstant()" }
+}
+
 extension LLVMIntegerConstant: CustomReflectable {
     
     @inlinable
