@@ -64,12 +64,6 @@ extension LLVMBuilder: Hashable {
     }
 }
 
-extension LLVMBuilder: CustomDebugStringConvertible {
-    
-    @inlinable
-    public var debugDescription: String { "LLVMBuilder()" }
-}
-
 extension LLVMBuilder: CustomReflectable {
     
     @inlinable

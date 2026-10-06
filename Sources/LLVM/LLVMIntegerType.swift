@@ -34,12 +34,6 @@ extension LLVMIntegerType: Hashable {
     }
 }
 
-extension LLVMIntegerType: CustomDebugStringConvertible {
-    
-    @inlinable
-    public var debugDescription: String { "LLVMIntegerType()" }
-}
-
 extension LLVMIntegerType: CustomReflectable {
     
     @inlinable

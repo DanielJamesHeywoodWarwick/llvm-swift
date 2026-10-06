@@ -38,12 +38,6 @@ extension LLVMFunction: Hashable {
     }
 }
 
-extension LLVMFunction: CustomDebugStringConvertible {
-    
-    @inlinable
-    public var debugDescription: String { "LLVMFunction()" }
-}
-
 extension LLVMFunction: CustomReflectable {
     
     @inlinable
