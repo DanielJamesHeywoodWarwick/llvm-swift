@@ -36,6 +36,15 @@ public class LLVMBuilder {
     
     @inlinable
     public func buildReturn(of value: LLVMValue) -> LLVMValue {
+        guard case let .module(module) = _container else {
+            preconditionFailure("The builder is not positioned in a module")
+        }
+        switch value._container {
+        case let .context(valueContext):
+            precondition(valueContext == module._context, "The value is not in the same context as the builder")
+        case let .module(valueModule):
+            precondition(valueModule == module, "The value is not in the module where the builder is positioned")
+        }
         let rawValue = LLVMBuildRet(_rawBuilder, value._rawValue) as LLVMValueRef
         return switch _container {
         case let .context(context):
