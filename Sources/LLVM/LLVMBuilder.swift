@@ -29,7 +29,7 @@ public class LLVMBuilder {
     public func position(atEndOf block: LLVMBasicBlock) {
         precondition(_context == block._context, "The block is not in the same context as the builder")
         LLVMPositionBuilderAtEnd(_rawBuilder, block._rawBlock)
-        if case let .module(module) = _container {
+        if case let .module(module) = block._container {
             _container = .module(module)
         }
     }
