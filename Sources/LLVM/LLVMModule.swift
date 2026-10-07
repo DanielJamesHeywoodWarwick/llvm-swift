@@ -58,7 +58,11 @@ public class LLVMModule {
                     guard let parameterCount = UInt32(exactly: buffer.count) else {
                         preconditionFailure("Expected at most \(UInt32.max) parameters, but got \(buffer.count)")
                     }
-                    return LLVMFunctionType(returnType._rawType, buffer.baseAddress, parameterCount, isVariableArgument ? 1 : 0)
+                    return LLVMC.LLVMFunctionType(
+                        returnType._rawType,
+                        buffer.baseAddress, parameterCount,
+                        isVariableArgument ? 1 : 0
+                    )
                 }
             ),
             in: self
