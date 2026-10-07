@@ -1,30 +1,17 @@
 import LLVMC
 
-public struct LLVMContext {
+public class LLVMContext {
     
     @usableFromInline
-    internal final class _Storage {
-        
-        @usableFromInline
-        internal let rawContext = LLVMContextCreate() as LLVMContextRef
-        
-        @inlinable
-        internal init() {}
-        
-        @inlinable
-        deinit {
-            LLVMContextDispose(rawContext)
-        }
-    }
-    
-    @usableFromInline
-    internal let _storage = _Storage()
+    internal let _rawContext = LLVMContextCreate() as LLVMContextRef
     
     @inlinable
     public init() {}
     
     @inlinable
-    internal var _rawContext: LLVMContextRef { _storage.rawContext }
+    deinit {
+        LLVMContextDispose(_rawContext)
+    }
 }
 
 extension LLVMContext: Equatable {
