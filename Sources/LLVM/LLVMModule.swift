@@ -1,39 +1,27 @@
 import SystemPackage
 import LLVMC
 
-public struct LLVMModule {
+public class LLVMModule {
     
     @usableFromInline
-    internal final class _Storage {
-        
-        @usableFromInline
-        internal let rawModule: LLVMModuleRef
-        
-        @usableFromInline
-        internal let context: LLVMContext
-        
-        @inlinable
-        internal init(id: String, in context: LLVMContext) {
-            rawModule = LLVMModuleCreateWithNameInContext(id, context._rawContext)
-            self.context = context
-        }
-        
-        @inlinable
-        deinit {
-            LLVMDisposeModule(rawModule)
-        }
-    }
+    internal let _rawModule: LLVMModuleRef
     
     @usableFromInline
-    internal let _storage: _Storage
+    internal let _context: LLVMContext
     
     @inlinable
     public init(id: String, sourceFileName: String, in context: LLVMContext) {
-        _storage = _Storage(id: id, in: context)
+        _rawModule = LLVMModuleCreateWithNameInContext(id, context._rawContext)
+        _context = context
         var sourceFileName = sourceFileName
         sourceFileName.withUTF8 { buffer in
-            LLVMSetSourceFileName(_storage.rawModule, buffer.baseAddress, buffer.count)
+            LLVMSetSourceFileName(_rawModule, buffer.baseAddress, buffer.count)
         }
+    }
+    
+    @inlinable
+    deinit {
+        LLVMDisposeModule(_rawModule)
     }
     
     @inlinable
@@ -76,12 +64,6 @@ public struct LLVMModule {
             in: self
         )
     }
-    
-    @inlinable
-    internal var _context: LLVMContext { _storage.context }
-    
-    @inlinable
-    internal var _rawModule: LLVMModuleRef { _storage.rawModule }
 }
 
 extension LLVMModule: Equatable {
