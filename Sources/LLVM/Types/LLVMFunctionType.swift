@@ -4,8 +4,8 @@ public class LLVMFunctionType: LLVMType {
     
     @inlinable
     public init(
-        returnType: LLVMFirstClassType,
-        parameterTypes: some Sequence<LLVMFirstClassType>,
+        returnType: LLVMType,
+        parameterTypes: some Sequence<LLVMType>,
         isVariableArgument: Bool = false,
         in context: LLVMContext
     ) {

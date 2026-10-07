@@ -1,6 +1,6 @@
 import LLVMC
 
-public class LLVMIntegerType: LLVMFirstClassType {
+public class LLVMIntegerType: LLVMType {
     
     @inlinable
     public init(bitWidth: Int, in context: LLVMContext) {
