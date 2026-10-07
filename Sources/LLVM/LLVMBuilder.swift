@@ -45,6 +45,7 @@ public class LLVMBuilder {
         case let .module(valueModule):
             precondition(valueModule == module, "The value is not in the module where the builder is positioned")
         }
+        precondition(value is LLVMConstantInteger, "Expected the value to be a constant integer, but it is a \(type(of: value))")
         let rawValue = LLVMBuildRet(_rawBuilder, value._rawValue) as LLVMValueRef
         return LLVMReturnInstruction(_rawValue: rawValue, in: module)
     }
