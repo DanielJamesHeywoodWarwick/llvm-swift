@@ -1,6 +1,6 @@
 import LLVMC
 
-public class LLVMType {
+public class LLVMType: CustomReflectable {
     
     @usableFromInline
     internal let _rawType: LLVMTypeRef
@@ -13,6 +13,9 @@ public class LLVMType {
         self._rawType = _rawType
         _context = context
     }
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
 }
 
 extension LLVMType: Equatable {
@@ -27,10 +30,4 @@ extension LLVMType: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(_rawType)
     }
-}
-
-extension LLVMType: CustomReflectable {
-    
-    @inlinable
-    public var customMirror: Mirror { Mirror(self, children: [:]) }
 }
