@@ -3,11 +3,27 @@ import LLVMC
 public class LLVMValue {
     
     @usableFromInline
+    internal enum _Container {
+        case context(LLVMContext)
+        case module(LLVMModule)
+    }
+    
+    @usableFromInline
     internal let _rawValue: LLVMValueRef
     
+    @usableFromInline
+    internal var _container: _Container
+    
     @inlinable
-    internal init(_rawValue: LLVMValueRef) {
+    internal init(_rawValue: LLVMValueRef, in context: LLVMContext) {
         self._rawValue = _rawValue
+        _container = .context(context)
+    }
+    
+    @inlinable
+    internal init(_rawValue: LLVMValueRef, in module: LLVMModule) {
+        self._rawValue = _rawValue
+        _container = .module(module)
     }
 }
 

@@ -3,15 +3,21 @@ import LLVMC
 public class LLVMBuilder {
     
     @usableFromInline
+    internal enum _Container {
+        case context(LLVMContext)
+        case module(LLVMModule)
+    }
+    
+    @usableFromInline
     internal let _rawBuilder: LLVMBuilderRef
     
     @usableFromInline
-    internal let _context: LLVMContext
+    internal var _container: _Container
     
     @inlinable
     public init(in context: LLVMContext) {
         _rawBuilder = LLVMCreateBuilderInContext(context._rawContext)
-        _context = context
+        _container = .context(context)
     }
     
     @inlinable
@@ -21,13 +27,24 @@ public class LLVMBuilder {
     
     @inlinable
     public func position(atEndOf block: LLVMBasicBlock) {
+        precondition(_context == block._context, "The block is not in the same context as the builder")
         LLVMPositionBuilderAtEnd(_rawBuilder, block._rawBlock)
+        if case let .module(module) = _container {
+            _container = .module(module)
+        }
     }
     
     @inlinable
-    public func buildReturn(of value: LLVMFirstClassValue) -> LLVMInstruction {
-        precondition(value._context == _context, "The value is not in the same context as the builder")
-        return LLVMOpaqueInstruction(_rawValue: LLVMBuildRet(_rawBuilder, value._rawValue), in: _context)
+    public func buildReturn(of value: LLVMValue) -> LLVMValue {}
+    
+    @inlinable
+    internal var _context: LLVMContext {
+        switch _container {
+        case let .context(context):
+            context
+        case let .module(module):
+            module._context
+        }
     }
 }
 

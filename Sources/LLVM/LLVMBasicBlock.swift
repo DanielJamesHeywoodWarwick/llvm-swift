@@ -19,6 +19,16 @@ public class LLVMBasicBlock {
         self._rawBlock = _rawBlock
         _container = .module(module)
     }
+    
+    @inlinable
+    internal var _context: LLVMContext {
+        switch _container {
+        case let .context(context):
+            context
+        case let .module(module):
+            module._context
+        }
+    }
 }
 
 extension LLVMBasicBlock: Equatable {

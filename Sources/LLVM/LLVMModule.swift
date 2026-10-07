@@ -23,51 +23,6 @@ public class LLVMModule {
     deinit {
         LLVMDisposeModule(_rawModule)
     }
-    
-    @inlinable
-    public func write(to descriptor: FileDescriptor) throws {
-        let rawMessage = LLVMPrintModuleToString(_rawModule) as UnsafeMutablePointer<CChar>
-        defer {
-            LLVMDisposeMessage(rawMessage)
-        }
-        var count = 0
-        while rawMessage[count] != 0 {
-            count += 1
-        }
-        try descriptor.writeAll(UnsafeRawBufferPointer(start: rawMessage, count: count))
-    }
-    
-    @inlinable
-    public func addFunction(
-        _ name: String,
-        returnType: LLVMFirstClassType,
-        parameterTypes: some Sequence<LLVMFirstClassType>,
-        isVariableArgument: Bool = false
-    ) -> LLVMFunction {
-        precondition(returnType._context == _context, "The return type is not in the same context as the module")
-        precondition(
-            parameterTypes.allSatisfy { type in type._context == _context },
-            "The parameter types are not all in the same context as the module"
-        )
-        var rawParameterTypes = parameterTypes.map { type in type._rawType as LLVMTypeRef? }
-        return LLVMFunction(
-            _rawValue: LLVMAddFunction(
-                _rawModule,
-                name,
-                rawParameterTypes.withUnsafeMutableBufferPointer { buffer in
-                    guard let parameterCount = UInt32(exactly: buffer.count) else {
-                        preconditionFailure("Expected at most \(UInt32.max) parameters, but got \(buffer.count)")
-                    }
-                    return LLVMC.LLVMFunctionType(
-                        returnType._rawType,
-                        buffer.baseAddress, parameterCount,
-                        isVariableArgument ? 1 : 0
-                    )
-                }
-            ),
-            in: self
-        )
-    }
 }
 
 extension LLVMModule: Equatable {
