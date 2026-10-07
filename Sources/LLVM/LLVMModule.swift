@@ -23,6 +23,9 @@ public class LLVMModule {
     deinit {
         LLVMDisposeModule(_rawModule)
     }
+    
+    @inlinable
+    internal var _rawContext: LLVMContextRef { _context._rawContext }
 }
 
 extension LLVMModule: Equatable {
