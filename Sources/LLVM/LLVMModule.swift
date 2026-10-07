@@ -44,6 +44,11 @@ public class LLVMModule {
         parameterTypes: some Sequence<LLVMType>,
         isVariableArgument: Bool = false
     ) -> LLVMFunction {
+        precondition(returnType._context == _context, "The return type is not in the same context as the module")
+        precondition(
+            parameterTypes.allSatisfy { type in type._context == _context },
+            "The parameter types are not all in the same context as the module"
+        )
         var rawParameterTypes = parameterTypes.map { type in type._rawType as LLVMTypeRef? }
         return LLVMFunction(
             _rawValue: LLVMAddFunction(
