@@ -1,6 +1,6 @@
 import LLVMC
 
-public class LLVMValue: CustomReflectable {
+public class LLVMValue {
     
     @usableFromInline
     internal enum _Container {
@@ -25,9 +25,6 @@ public class LLVMValue: CustomReflectable {
         self._rawValue = _rawValue
         _container = .module(module)
     }
-    
-    @inlinable
-    public var customMirror: Mirror { Mirror(self, children: [:]) }
 }
 
 extension LLVMValue: Equatable {
@@ -42,4 +39,10 @@ extension LLVMValue: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(_rawValue)
     }
+}
+
+extension LLVMValue: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
 }
