@@ -35,7 +35,15 @@ public class LLVMBuilder {
     }
     
     @inlinable
-    public func buildReturn(of value: LLVMValue) -> LLVMValue {}
+    public func buildReturn(of value: LLVMValue) -> LLVMValue {
+        let rawValue = LLVMBuildRet(_rawBuilder, value._rawValue) as LLVMValueRef
+        return switch _container {
+        case let .context(context):
+            LLVMValue(_rawValue: rawValue, in: context)
+        case let .module(module):
+            LLVMValue(_rawValue: rawValue, in: module)
+        }
+    }
     
     @inlinable
     internal var _context: LLVMContext {
