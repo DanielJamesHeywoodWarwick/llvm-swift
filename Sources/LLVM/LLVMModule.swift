@@ -25,6 +25,42 @@ public class LLVMModule {
     }
     
     @inlinable
+    public func write(to descriptor: FileDescriptor) throws {
+        let rawMessage = LLVMPrintModuleToString(_rawModule) as UnsafeMutablePointer<CChar>
+        defer {
+            LLVMDisposeMessage(rawMessage)
+        }
+        var count = 0
+        while rawMessage[count] != 0 {
+            count += 1
+        }
+        try descriptor.writeAll(UnsafeRawBufferPointer(start: rawMessage, count: count))
+    }
+    
+    @inlinable
+    public func addFunction(
+        _ name: String,
+        returnType: LLVMType,
+        parameterTypes: some Sequence<LLVMType>,
+        isVariableArgument: Bool = false
+    ) -> LLVMFunction {
+        var rawParameterTypes = parameterTypes.map { type in type._rawType as LLVMTypeRef? }
+        return LLVMFunction(
+            _rawValue: LLVMAddFunction(
+                _rawModule,
+                name,
+                rawParameterTypes.withUnsafeMutableBufferPointer { buffer in
+                    guard let parameterCount = UInt32(exactly: buffer.count) else {
+                        preconditionFailure("Expected at most \(UInt32.max) parameters, but got \(buffer.count)")
+                    }
+                    return LLVMFunctionType(returnType._rawType, buffer.baseAddress, parameterCount, isVariableArgument ? 1 : 0)
+                }
+            ),
+            in: self
+        )
+    }
+    
+    @inlinable
     internal var _rawContext: LLVMContextRef { _context._rawContext }
 }
 
