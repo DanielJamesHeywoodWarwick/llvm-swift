@@ -1,15 +1,36 @@
 import LLVMC
 
-public protocol LLVMType {
+public class LLVMType {
     
-    var opaqueType: LLVMOpaqueType { get }
+    @usableFromInline
+    internal let _rawType: LLVMTypeRef
+    
+    @usableFromInline
+    internal let _context: LLVMContext
+    
+    @inlinable
+    internal init(_rawType: LLVMTypeRef, in context: LLVMContext) {
+        self._rawType = _rawType
+        _context = context
+    }
 }
 
-extension LLVMType {
+extension LLVMType: Equatable {
     
     @inlinable
-    internal var _context: LLVMContext { opaqueType._context }
+    public static func == (lhs: LLVMType, rhs: LLVMType) -> Bool { lhs._rawType == rhs._rawType }
+}
+
+extension LLVMType: Hashable {
     
     @inlinable
-    internal var _rawType: LLVMTypeRef { opaqueType._rawType }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(_rawType)
+    }
+}
+
+extension LLVMType: CustomReflectable {
+    
+    @inlinable
+    public var customMirror: Mirror { Mirror(self, children: [:]) }
 }
