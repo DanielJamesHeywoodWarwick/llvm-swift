@@ -1,17 +1,23 @@
 import LLVMC
 
-public struct LLVMBasicBlock {
+public class LLVMBasicBlock {
+    
+    @usableFromInline
+    internal enum _Container {
+        case context(LLVMContext)
+        case module(LLVMModule)
+    }
     
     @usableFromInline
     internal let _rawBlock: LLVMBasicBlockRef
     
     @usableFromInline
-    internal let _module: LLVMModule
+    internal let _container: _Container
     
     @inlinable
     internal init(_rawBlock: LLVMBasicBlockRef, in module: LLVMModule) {
         self._rawBlock = _rawBlock
-        _module = module
+        _container = .module(module)
     }
 }
 
