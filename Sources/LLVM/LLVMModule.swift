@@ -1,7 +1,6 @@
 import SystemPackage
 import LLVMC
 
-@frozen
 public struct LLVMModule {
     
     @usableFromInline

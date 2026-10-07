@@ -1,6 +1,5 @@
 import LLVMC
 
-@frozen
 public struct LLVMOpaqueFirstClassType: LLVMFirstClassType {
     
     @usableFromInline

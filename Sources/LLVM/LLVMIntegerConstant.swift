@@ -1,6 +1,5 @@
 import LLVMC
 
-@frozen
 public struct LLVMIntegerConstant: LLVMInteger, LLVMConstant {
     
     @usableFromInline
