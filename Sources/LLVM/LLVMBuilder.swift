@@ -1,34 +1,22 @@
 import LLVMC
 
-public struct LLVMBuilder {
+public class LLVMBuilder {
     
     @usableFromInline
-    internal final class _Storage {
-        
-        @usableFromInline
-        internal let rawBuilder: LLVMBuilderRef
-        
-        @usableFromInline
-        internal let context: LLVMContext
-        
-        @inlinable
-        internal init(in context: LLVMContext) {
-            rawBuilder = LLVMCreateBuilderInContext(context._rawContext)
-            self.context = context
-        }
-        
-        @inlinable
-        deinit {
-            LLVMDisposeBuilder(rawBuilder)
-        }
-    }
+    internal let _rawBuilder: LLVMBuilderRef
     
     @usableFromInline
-    internal let _storage: _Storage
+    internal let _context: LLVMContext
     
     @inlinable
     public init(in context: LLVMContext) {
-        _storage = _Storage(in: context)
+        _rawBuilder = LLVMCreateBuilderInContext(context._rawContext)
+        _context = context
+    }
+    
+    @inlinable
+    deinit {
+        LLVMDisposeBuilder(_rawBuilder)
     }
     
     @inlinable
@@ -41,12 +29,6 @@ public struct LLVMBuilder {
         precondition(value._context == _context, "The value is not in the same context as the builder")
         return LLVMOpaqueInstruction(_rawValue: LLVMBuildRet(_rawBuilder, value._rawValue), in: _context)
     }
-    
-    @inlinable
-    internal var _context: LLVMContext { _storage.context }
-    
-    @inlinable
-    internal var _rawBuilder: LLVMBuilderRef { _storage.rawBuilder }
 }
 
 extension LLVMBuilder: Equatable {
