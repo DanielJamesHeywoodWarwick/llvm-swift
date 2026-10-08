@@ -1,4 +1,3 @@
-import SystemPackage
 import LLVMC
 
 public class LLVMModule {
@@ -22,19 +21,6 @@ public class LLVMModule {
     @inlinable
     deinit {
         LLVMDisposeModule(_rawModule)
-    }
-    
-    @inlinable
-    public func write(to descriptor: FileDescriptor) throws {
-        let rawMessage = LLVMPrintModuleToString(_rawModule) as UnsafeMutablePointer<CChar>
-        defer {
-            LLVMDisposeMessage(rawMessage)
-        }
-        var count = 0
-        while rawMessage[count] != 0 {
-            count += 1
-        }
-        try descriptor.writeAll(UnsafeRawBufferPointer(start: rawMessage, count: count))
     }
     
     @inlinable
